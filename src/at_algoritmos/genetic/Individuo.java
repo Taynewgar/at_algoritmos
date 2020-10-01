@@ -9,11 +9,14 @@ public class Individuo {
 	private int valorTotal;
 	private int pesoTotal;
 	private int indice;
-	private int geracao = 1;
-	
+	private int geracao;
 
-	private Gene[] genes = { new Gene("Sacola", 10, 15), new Gene("Mala de Viagem", 40, 90),
-			new Gene("Cão de Pelúcia", 26, 50), new Gene("Bolsa de Mão", 32, 60), new Gene("Bola de Futebol", 8, 12) };
+	private Gene[] genes = {
+			new Gene("Sacola", 10, 15),
+			new Gene("Mala de Viagem", 40, 90),
+			new Gene("Cão de Pelúcia", 26, 50),
+			new Gene("Bolsa de Mão", 32, 60),
+			new Gene("Bola de Futebol", 8, 12) };
 
 	public Individuo() {
 		this.objetos = new int[tamanhoIndividuo];
@@ -66,13 +69,21 @@ public class Individuo {
 	public static int getTamanhomochila() {
 		return tamanhoMochila;
 	}
-	
+
 	public int getIndice() {
 		return indice;
 	}
 
 	public void setIndice(int indice) {
 		this.indice = indice;
+	}
+
+	public int getGeracao() {
+		return geracao;
+	}
+
+	public void setGeracao(int geracao) {
+		this.geracao = geracao;
 	}
 
 	public void decodificacao() {
@@ -83,19 +94,19 @@ public class Individuo {
 				this.valorTotal += genes[i].getValor();
 			}
 		}
-		
+
 		this.aptidao = this.valorTotal;
 
 	}
-	
+
 	public String imprimir() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ ");
-		for(int i : objetos) {
+		for (int i : objetos) {
 			sb.append(String.valueOf(i)).append(", ");
 		}
 		sb.append("]");
-		
+
 		return sb.toString();
 	}
 
@@ -104,22 +115,14 @@ public class Individuo {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < objetos.length; i++) {
 			if (objetos[i] > 0) {
-				sb.append("Nome: ").append(genes[i].getNome())
-				.append(" Peso: ")
-				.append(String.valueOf(genes[i].getPeso()))
-				.append(" Valor: ")
-				.append(String.valueOf(genes[i].getValor()))
-				.append("\n");
+				sb.append("Nome: ").append(genes[i].getNome()).append(" Peso: ")
+						.append(String.valueOf(genes[i].getPeso())).append(" Valor: ")
+						.append(String.valueOf(genes[i].getValor())).append("\n");
 			}
 		}
 
-		sb.append("Peso Total: ")
-		.append(this.pesoTotal)
-		.append("\nValor Total: ")
-		.append(this.valorTotal)
-		.append("\nAptidão: ")
-		.append(this.aptidao)
-		.append("\n\n");
+		sb.append("Peso Total: ").append(this.pesoTotal).append("\nValor Total: ").append(this.valorTotal)
+				.append("\nAptidão: ").append(this.aptidao).append("\n\n");
 
 		return sb.toString();
 
